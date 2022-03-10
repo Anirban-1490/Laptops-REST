@@ -2,6 +2,7 @@ const express = require("express");
 const app = express()
 const router  = require("./model/router")
 
+const connectDB = require("./Database/db_connection");
 
 app.use(express.urlencoded())
 app.use(express.json())
@@ -11,4 +12,16 @@ app.use("/api/v1",(req,res,next)=>{
 },router)
 
 
-app.listen(5000,()=>console.log("server is running ...."))
+ const  serverStart = async()=>
+{
+     try {
+
+          await connectDB();
+          
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+    
+app.listen(5000, () => console.log("server is running ...."))
+serverStart()
