@@ -4,6 +4,7 @@ const router  = require("./model/router")
 
 
 app.use(express.urlencoded())
+app.use(express.json())
 app.use("/api/v1",(req,res,next)=>{
     console.log("connected");
     next()

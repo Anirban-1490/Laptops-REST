@@ -26,12 +26,38 @@ const getSingleProduct = (req,res)=>
 
 }
 
+// middleware for query string URL
 const getQueryProduct = (req,res)=>
 {
+   
+    const {rating} = req.query;
+    if(!rating) return res.status(404).json({"status":"invalid query string","data":[],"time":new Date().toLocaleString()})
 
-    console.log(req.query);
-    res.send("hello")
+    const newData = data.filter(item=> item.rating == rating)
+
+    return res.status(200).json({"status":"success","data":newData,"time":new Date().toLocaleString()})
 }
 
 
-module.exports = {getAllProducts,getSingleProduct,getQueryProduct}
+//middleware for add a product
+
+const postProduct = (req,res)=>
+{
+    const product = req.body;
+
+    // empty body
+    if(Object.entries(product).length == 0) return res.status(406).json({"status":"empty object","time":new Date().toLocaleString()})
+
+    // not every field is presentin the passed body
+    if(Object.entries(product).length <11) return res.status(406).json({"status":"missing data","time":new Date().toLocaleString()})
+
+    const minimalEntry = Object.entries(product).slice(0,5);
+    const newMinimalData = [...data,Object.fromEntries(minimalEntry)]
+    const updatedData = [...data_detailed,product];
+
+    return  res.status(200).json({"status":"success","data":newMinimalData,"time":new Date().toLocaleString()})
+}
+
+
+
+module.exports = {getAllProducts,getSingleProduct,getQueryProduct,postProduct}

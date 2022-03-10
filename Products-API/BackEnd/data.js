@@ -33,7 +33,7 @@ module.exports.data = [
     name: "Acer Nitro 5 AN515-56 11th Gen Intel Core i5-11300H 15.6 inches FHD 144Hz IPS Display Gaming Laptop (NVIDIA GeForce GTX 1650 Laptop Graphics",
     img:"https://m.media-amazon.com/images/I/71evs2WKJjS._AC_UL320_.jpg",
     price:"62900",
-    rating:"4" },
+    rating:"3.5" },
 
     { id: "7", 
     name: "MSI GF75 Intel Core i7-10750H, 17.3 inches FHD IPS-Level 144Hz Panel Thin Gaming Laptop (8GB/512GB NVMe SSD/Windows 10 Home/NVIDIA GTX1650 4GB",
