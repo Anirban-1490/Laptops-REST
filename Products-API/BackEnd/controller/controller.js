@@ -58,6 +58,7 @@ const postProduct = (req,res)=>
     return  res.status(200).json({"status":"success","data":newMinimalData,"time":new Date().toLocaleString()})
 }
 
+//middleware for updating a single product
 
 const updateProduct = (req,res)=>
 {
@@ -67,7 +68,7 @@ const updateProduct = (req,res)=>
 
     if(Object.entries(update).length == 0) return res.status(406).json({"status":"empty object","time":new Date().toLocaleString()})
 
-     // not every field is presentin the passed body
+     // not every field is present in the passed body
      if(Object.entries(update).length <11) return res.status(406).json({"status":"missing data","time":new Date().toLocaleString()})
 
      const updatedData = data_detailed.map(item=>{
@@ -81,5 +82,18 @@ const updateProduct = (req,res)=>
      return  res.status(200).json({"status":"success","data":updatedData,"time":new Date().toLocaleString()})
 }
 
+// middleware for deleting a product
 
-module.exports = {getAllProducts,getSingleProduct,getQueryProduct,postProduct,updateProduct}
+const deleteProduct = (req,res)=>
+{
+    const {productID} = req.params;
+
+    const updatedProducts = data_detailed.filter(item=>item.id != productID)
+    const updatedMinimalProducts = data.filter(item=>item.id !=productID)
+
+    res.status(200).json(updatedMinimalProducts);
+}
+
+
+
+module.exports = {getAllProducts,getSingleProduct,getQueryProduct,postProduct,updateProduct,deleteProduct}
