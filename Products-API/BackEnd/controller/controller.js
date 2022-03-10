@@ -59,5 +59,27 @@ const postProduct = (req,res)=>
 }
 
 
+const updateProduct = (req,res)=>
+{
+    const update = req.body;
+    const {productID} = req.params;
+    
 
-module.exports = {getAllProducts,getSingleProduct,getQueryProduct,postProduct}
+    if(Object.entries(update).length == 0) return res.status(406).json({"status":"empty object","time":new Date().toLocaleString()})
+
+     // not every field is presentin the passed body
+     if(Object.entries(update).length <11) return res.status(406).json({"status":"missing data","time":new Date().toLocaleString()})
+
+     const updatedData = data_detailed.map(item=>{
+         if(item.id == productID)
+         {
+             return update;
+         }
+         return item
+     })
+
+     return  res.status(200).json({"status":"success","data":updatedData,"time":new Date().toLocaleString()})
+}
+
+
+module.exports = {getAllProducts,getSingleProduct,getQueryProduct,postProduct,updateProduct}
