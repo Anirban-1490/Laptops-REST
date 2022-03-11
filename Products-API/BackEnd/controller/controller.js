@@ -1,6 +1,6 @@
 const {data} = require("../data")
 const {data_detailed} = require("../data-detailed")
-
+const productModel = require("../Database/db_products_model");
 
 
 // get all the products
@@ -41,7 +41,7 @@ const getQueryProduct = (req,res)=>
 
 //middleware for add a product
 
-const postProduct = (req,res)=>
+const postProduct = async (req,res)=>
 {
     const product = req.body;
 
@@ -49,13 +49,11 @@ const postProduct = (req,res)=>
     if(Object.entries(product).length == 0) return res.status(406).json({"status":"empty object","time":new Date().toLocaleString()})
 
     // not every field is presentin the passed body
-    if(Object.entries(product).length <11) return res.status(406).json({"status":"missing data","time":new Date().toLocaleString()})
+    if(Object.entries(product).length <10) return res.status(406).json({"status":"missing data","time":new Date().toLocaleString()})
 
-    const minimalEntry = Object.entries(product).slice(0,5);
-    const newMinimalData = [...data,Object.fromEntries(minimalEntry)]
-    const updatedData = [...data_detailed,product];
+    const result = await productModel.insertMany(product);
 
-    return  res.status(200).json({"status":"success","data":newMinimalData,"time":new Date().toLocaleString()})
+    return  res.status(200).json({"status":"success","time":new Date().toLocaleString()})
 }
 
 //middleware for updating a single product
