@@ -61,7 +61,7 @@ const postProduct = async (req,res)=>
 
 //middleware for updating a single product
 
-const updateProduct = (req,res)=>
+const updateProduct = async(req,res)=>
 {
     const update = req.body;
     const {productID} = req.params;
@@ -72,15 +72,11 @@ const updateProduct = (req,res)=>
      // not every field is present in the passed body
      if(Object.entries(update).length <10) return res.status(406).json({"status":"missing data","time":new Date().toLocaleString()})
 
-     const updatedData = data_detailed.map(item=>{
-         if(item.id == productID)
-         {
-             return update;
-         }
-         return item
-     })
+     //*find the doc by id and update it 
 
-     return  res.status(200).json({"status":"success","data":updatedData,"time":new Date().toLocaleString()})
+    await productModel.findByIdAndUpdate(productID,update,{runValidators:true}) //*using runvalidator to enable schema validation as findbyID has limited validation
+
+     return  res.status(200).json({"status":"success","time":new Date().toLocaleString()})
 }
 
 // middleware for deleting a product
