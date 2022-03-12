@@ -4,24 +4,27 @@ const productModel = require("../Database/db_products_model");
 
 
 // get all the products
-const getAllProducts = (req,res)=>
+const getAllProducts = async (req,res)=>
 {
-    res.status(200).json(data);
+    const products = await productModel.find(); //get all products from database
+    res.status(200).json({"status":"success","data":products,"time":new Date().toLocaleString()});
 }
 
 // middleware for a product with it's specified product id
 
-const getSingleProduct = (req,res)=>
+const getSingleProduct =async  (req,res)=>
 {
 
     const {productID} = req.params;
   
-    
-    if(!data_detailed.find(item=>item.id == productID)) return res.status(404).json({"status":"data not found","data":[],"time":new Date().toLocaleString()})
+  try {
+    const askedProduct = await productModel.findById(productID+""); //find the product by id
+    if(!askedProduct) return res.status(404).json({"status":"data not found","data":[],"time":new Date().toLocaleString()})
 
-    data_detailed.find(item=> {
-        if(item.id === productID) return res.status(200).json({"status":"success","data":item,"time":new Date().toLocaleString()})
-    }) 
+    return res.status(200).json({"status":"success","data":askedProduct,"time":new Date().toLocaleString()})
+  } catch (error) {
+    return res.status(400).json({"status":"invalid Product ID","data":[],"time":new Date().toLocaleString()})
+  }
 
 
 }
@@ -51,7 +54,7 @@ const postProduct = async (req,res)=>
     // not every field is presentin the passed body
     if(Object.entries(product).length <10) return res.status(406).json({"status":"missing data","time":new Date().toLocaleString()})
 
-    const result = await productModel.insertMany(product);
+     await productModel.create(product);
 
     return  res.status(200).json({"status":"success","time":new Date().toLocaleString()})
 }
@@ -67,7 +70,7 @@ const updateProduct = (req,res)=>
     if(Object.entries(update).length == 0) return res.status(406).json({"status":"empty object","time":new Date().toLocaleString()})
 
      // not every field is present in the passed body
-     if(Object.entries(update).length <11) return res.status(406).json({"status":"missing data","time":new Date().toLocaleString()})
+     if(Object.entries(update).length <10) return res.status(406).json({"status":"missing data","time":new Date().toLocaleString()})
 
      const updatedData = data_detailed.map(item=>{
          if(item.id == productID)
@@ -82,14 +85,17 @@ const updateProduct = (req,res)=>
 
 // middleware for deleting a product
 
-const deleteProduct = (req,res)=>
+const deleteProduct = async (req,res)=>
 {
     const {productID} = req.params;
 
-    const updatedProducts = data_detailed.filter(item=>item.id != productID)
-    const updatedMinimalProducts = data.filter(item=>item.id !=productID)
-
-    res.status(200).json(updatedMinimalProducts);
+    try {
+        await productModel.findByIdAndDelete(productID)
+        return res.status(200).json({"status":"success","time":new Date().toLocaleString()})
+    } catch (error) {
+        return res.status(404).json({"status":"Product not found with this ID","data":[],"time":new Date().toLocaleString()})
+    }
+   
 }
 
 

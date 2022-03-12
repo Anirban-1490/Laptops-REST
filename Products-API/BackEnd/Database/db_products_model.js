@@ -13,6 +13,13 @@ const productSchema = new mongoose.Schema({
         type:Number,
         required:[true,'price is required']
     },
+    rating:{
+        type:Number,
+        required:false,
+        default:0,
+        min:0,
+        max:5
+    },
     ram:{
         type:String,
         required:[true,'ram details required']
