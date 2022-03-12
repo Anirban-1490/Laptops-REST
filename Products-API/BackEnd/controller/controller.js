@@ -1,5 +1,4 @@
-const {data} = require("../data")
-const {data_detailed} = require("../data-detailed")
+
 const productModel = require("../Database/db_products_model");
 
 
@@ -30,15 +29,37 @@ const getSingleProduct =async  (req,res)=>
 }
 
 // middleware for query string URL
-const getQueryProduct = (req,res)=>
+const getQueryProduct = async(req,res)=>
 {
-   
-    const {rating} = req.query;
-    if(!rating) return res.status(404).json({"status":"invalid query string","data":[],"time":new Date().toLocaleString()})
+   const products = await productModel.find();
+    const queryParams = req.query;
 
-    const newData = data.filter(item=> item.rating == rating)
+    //*check if any of query string param has an empty value
+    const allValuesThere = Object.entries(queryParams).every(param =>param[1]!='')
+    if(!allValuesThere) return res.status(400).json({"status":"invalid query string","data":[],"time":new Date().toLocaleString()})
 
-    return res.status(200).json({"status":"success","data":newData,"time":new Date().toLocaleString()})
+    let queryResult = []
+    if(queryParams.rating)
+    {
+        queryResult =   products.filter(item=>item.rating >=Number(queryParams.rating))
+    }
+    if(queryParams.price)
+    {
+        const [min,max] = queryParams.price.split("_");
+
+        //*if there is already a query result then use that else filter from fresh data of database
+        const filteredData = (queryResult.length>0)?queryResult.filter(item=>item.price>=Number(min) && item.price<=Number(max)):products.filter(item=>item.price>=Number(min) && item.price<=Number(max))
+        queryResult = filteredData
+    }
+    if(queryParams.ram)
+    {
+        const ramEnum = {"0":"2GB","1":"4GB","2":"8GB","3":"16GB","4":"32GB","5":"64GB"}
+        const filteredData = (queryResult.length>0)?queryResult.filter(item=>item.ram === ramEnum[queryParams.ram]):products.filter(item=>item.ram === ramEnum[queryParams.ram])
+        queryResult = filteredData
+
+    }
+
+    return res.status(200).json({"status":"success","data":queryResult,"time":new Date().toLocaleString()})
 }
 
 
