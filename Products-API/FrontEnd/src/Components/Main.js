@@ -43,9 +43,15 @@ export const Main = ()=>
                         <div className='img-container'><img src={img} alt="image here" /></div>
                         <div className='info'>
                             <h3>{(windowSize<=430)?String(name).substring(0,50)+"...":(windowSize<=810)?String(name).substring(0,90)+"...":name}</h3>
-                            <div>
-                                <h4> &#8377;{price}</h4>
-                                <h4><ion-icon name="star"></ion-icon>{rating}</h4>
+                            <div className='wrapper'>
+                                <div className='more-details'>
+                                    <h4> &#8377;{price}</h4>
+                                    <h4><ion-icon name="star"></ion-icon>{rating}</h4>
+                                </div>
+                                <div className='operations'>
+                                    <ion-icon name="create-outline"></ion-icon>
+                                    <ion-icon name="trash-outline"></ion-icon>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -82,14 +82,20 @@ body{
     font-size: 1.07em;
 
 }
-.item-container .info div{
+.item-container .info .wrapper{
+  width: 100%;
+  display: flex;
+  gap: 30%;
+  margin-top: 10px;
+  align-items: center;
+  position: relative;
+}
+.item-container .info .wrapper .more-details{
     display: flex;
     width: 100px;
-   
-    margin-top: 20px;
     margin-left: 40px;
 }
-.item-container .info div h4{ 
+.item-container .info .wrapper .more-details h4{ 
     font-size: 0.89em;
     margin: 0 4%;
     display: inline-block;
@@ -99,15 +105,32 @@ body{
      font-family: Verdana, Geneva, Tahoma, sans-serif;
    border-radius: 20px;
 }
-.item-container .info div h4:nth-child(2){
+.item-container .info .wrapper .more-details h4:nth-child(2){
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 5px;
 }
-.item-container .info div h4:nth-child(2) ion-icon{
+.item-container .info .wrapper .more-details h4:nth-child(2) ion-icon{
    color: yellow;
    font-size: 1.2em;
+}
+
+.item-container .info .wrapper .operations{
+
+  
+    display: flex;
+    gap: 20%;
+    position: absolute;
+    font-size: 1.7em;
+    right: 7%;
+}
+.item-container .info .wrapper .operations ion-icon:nth-child(2):hover{
+    color: red;
+}
+
+.item-container .info .wrapper .operations ion-icon:nth-child(1):hover{
+    color: green;
 }
 
 
@@ -116,8 +139,24 @@ body{
         font-size: 1em;
     
     }
-    .item-container .info div h4{ 
+    .item-container .info .wrapper .more-details h4{ 
         font-size: 0.69em;
        
     }
+    .item-container .info .wrapper .operations{
+        font-size: 1.4em;
+    }
+    
+}
+@media screen and (max-width:490px) {
+
+    .item-container .info .wrapper .more-details h4{ 
+        font-size: 0.49em;
+       
+    }
+    .item-container .info .wrapper .operations{
+
+        font-size: 1.4em;
+    }
+    
 }
