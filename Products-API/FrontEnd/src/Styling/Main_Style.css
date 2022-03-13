@@ -1,0 +1,123 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    
+    width: 100%;
+    min-height: 100vh;
+}
+#root
+{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-main{
+    flex: 0 0 80%;
+    height: auto;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container-main h2{
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 5px;
+    font-size: 2.4em;
+}
+.container-main main
+{
+  
+    width: 100%;
+    margin-top: 2.4em;
+    height: 100%;
+    
+}
+.item-container
+{
+    width: 100%;
+    display: flex;
+    height: 9em;
+    box-shadow: 5px 5px 12px rgba(121, 119, 119, 0.582);
+    margin: 5% 0;
+   transform: translateY(0);
+   transition: all 300ms ease-out;
+}
+.item-container:hover{
+    box-shadow: 5px 10px 12px rgba(121, 119, 119, 0.582);
+    
+   transform: translateY(-5%);
+}
+
+.item-container .img-container {
+    flex: 0 0 26%;
+    height: 100%;
+    
+  
+}
+.item-container .img-container img{
+   width: 100%;
+   height: 100%;
+   object-fit: contain;
+   aspect-ratio: 16/9;
+}
+.item-container .info{
+   
+    color: black;
+    
+}
+.item-container .info h3{
+    margin-top: 1.3em;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    padding: 0 4%;
+    font-size: 1.07em;
+
+}
+.item-container .info div{
+    display: flex;
+    width: 100px;
+   
+    margin-top: 20px;
+    margin-left: 40px;
+}
+.item-container .info div h4{ 
+    font-size: 0.89em;
+    margin: 0 4%;
+    display: inline-block;
+    background: #00203FFF;
+     padding:8% 14%;
+     color: white;
+     font-family: Verdana, Geneva, Tahoma, sans-serif;
+   border-radius: 20px;
+}
+.item-container .info div h4:nth-child(2){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.item-container .info div h4:nth-child(2) ion-icon{
+   color: yellow;
+   font-size: 1.2em;
+}
+
+
+@media screen and (max-width:810px) {
+    .item-container .info h3{
+        font-size: 1em;
+    
+    }
+    .item-container .info div h4{ 
+        font-size: 0.69em;
+       
+    }
+}
