@@ -1,0 +1,66 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+*::placeholder{
+    color: rgba(128, 128, 128, 0.707);
+}
+.container{
+    
+    flex: 0 0 70%;
+   
+}
+.container h2{
+    font-size: 1.9em;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 4px;
+    text-align: center;
+}
+.container .product-form{
+    margin-top: 3em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  
+    
+}
+.container .product-form > div{
+    display: grid;
+    grid-template-columns: 8em 8em;
+    gap: 10px;
+}
+.container .product-form > input{
+    outline: none;
+    width: 34em;
+    padding: 0.35em;
+    border-radius: 0.5em;
+    font-size: 1.3em;
+
+}
+.container .product-form > div >input {
+    outline: none;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    border: 2px solid grey;
+}
+
+.container .product-form .submit-btn{
+    border:  none;
+    outline: none;
+    padding: 0.8em;
+    background: blue;
+    color: white;
+    border-radius: 0.5em;
+    transition: 300ms ease-out;
+}
+.container .product-form .submit-btn:hover{
+   background: darkblue;
+}
+
+
+@media screen and (max-width:663px) {
+
+    .container .product-form > input{
+       width: 67vw;
+    }
+    
+}

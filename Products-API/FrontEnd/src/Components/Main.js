@@ -2,7 +2,7 @@
 import React,{useEffect,useState} from 'react';
 import "../Styling/Main_Style.css"
 import axios from 'axios'
-
+import { Link } from 'react-router-dom';
 export const Main = ()=>
 {
     const [windowSize,setWindowSize] = useState(window.innerWidth)
@@ -19,12 +19,13 @@ export const Main = ()=>
         fetchData()
     },[URL_GET_DATA])
 
-    const callbc = ()=>{
-        console.log(windowSize);
-        setWindowSize(window.innerWidth)
-    }
+   
 
     useEffect(()=>{
+        const callbc = ()=>{
+            console.log(windowSize);
+            setWindowSize(window.innerWidth)
+        }
         window.addEventListener("resize",callbc)
         return ()=> window.removeEventListener("resize",callbc)
     },[windowSize])
@@ -32,6 +33,8 @@ export const Main = ()=>
     return <>
         <div className='container-main'>
             <h2>Laptop-ssss</h2>
+            <button className='createbtn'><Link to={"/createandupdate"} className="btnlink">
+            <ion-icon name="add"></ion-icon>Create</Link></button>
             <main>
                {
                       
@@ -40,7 +43,7 @@ export const Main = ()=>
                     const {img,name,price,rating,_id} = item;
 
                     return <div key={_id} className ="item-container">
-                        <div className='img-container'><img src={img} alt="image here" /></div>
+                        <div className='img-container'><img src={img} alt="" /></div>
                         <div className='info'>
                             <h3>{(windowSize<=430)?String(name).substring(0,50)+"...":(windowSize<=810)?String(name).substring(0,90)+"...":name}</h3>
                             <div className='wrapper'>

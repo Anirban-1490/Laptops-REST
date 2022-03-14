@@ -32,14 +32,40 @@ body{
     font-family: 'Oswald', sans-serif;
     letter-spacing: 5px;
     font-size: 2.4em;
+    
+}
+.container-main .createbtn {
+    margin: 4em 0 0.10em 0;
+    position: relative;
+    right: -40%;
+    outline: none;
+    border: none;
+   
+   
+    font-size: 0.87em;
+    background: blue;
+    
+    transition: background 400ms ;
+    
+}
+.container-main .createbtn .btnlink{
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0.6em;
+}
+.container-main .createbtn:hover{
+    background: darkblue;
+}
+.container-main .createbtn .btnlink ion-icon{
+    font-size: 1.5em;
+    color: white;
 }
 .container-main main
 {
-  
     width: 100%;
-    margin-top: 2.4em;
     height: 100%;
-    
 }
 .item-container
 {
