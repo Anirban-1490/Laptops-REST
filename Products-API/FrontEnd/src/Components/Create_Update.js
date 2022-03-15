@@ -1,6 +1,6 @@
 import React, { useState ,useRef} from 'react'
 import "../Styling/createAndupdate_style.css"
-
+import axios from 'axios'
 
 
 export const CreateUpdate = ()=>{
@@ -13,6 +13,9 @@ export const CreateUpdate = ()=>{
         e.preventDefault()
         const formData = new FormData(formref.current)
         const inputData = Object.fromEntries(formData);
+        const URL_POST_DATA = "http://localhost:5000/api/v1/products"
+        axios.post(URL_POST_DATA,inputData).then(res=>console.log(res)).catch(err=>console.log(err))
+        
     }
 
 

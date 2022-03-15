@@ -73,11 +73,18 @@ const postProduct = async (req,res)=>
     if(Object.entries(product).length == 0) return res.status(406).json({"status":"empty object","time":new Date().toLocaleString()})
 
     // not every field is presentin the passed body
-    if(Object.entries(product).length <10) return res.status(406).json({"status":"missing data","time":new Date().toLocaleString()})
+    if(Object.entries(product).length <9) return res.status(406).json({"status":"missing data","time":new Date().toLocaleString()})
 
-     await productModel.create(product);
+    //some field has data and some don't
+    if(Object.entries(product).every(item=>item[1]!=='')) return res.status(406).json({"status":"missing data","time":new Date().toLocaleString()})
 
-    return  res.status(200).json({"status":"success","time":new Date().toLocaleString()})
+    try {
+        await productModel.create(product);
+
+        return  res.status(200).json({"status":"success","time":new Date().toLocaleString()})
+    } catch (error) {
+        return res.status(406).json({"status":"missing data","time":new Date().toLocaleString()})
+    }
 }
 
 //middleware for updating a single product
