@@ -20,6 +20,7 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    justify-content: center;
   
     
 }
@@ -54,6 +55,23 @@
 }
 .container .product-form .submit-btn:hover{
    background: darkblue;
+}
+
+
+.container .product-form .error {
+
+    font-weight: lighter;
+    text-align: center;
+    /* white-space: nowrap; */
+    padding: 0.6em;
+    background-color: #f7505091;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+    display: none;
+}
+.container .product-form .error.active {
+
+   display: block;
 }
 
 

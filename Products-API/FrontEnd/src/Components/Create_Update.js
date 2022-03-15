@@ -6,15 +6,25 @@ import axios from 'axios'
 export const CreateUpdate = ()=>{
 
     const formref = useRef();
+    const errorDisplay = useRef()
+    const [toggleText,setToggleText] = useState(false)
     
-    
-    function formHandler(e){
+    async function formHandler(e){
         // console.log(e);
         e.preventDefault()
         const formData = new FormData(formref.current)
         const inputData = Object.fromEntries(formData);
         const URL_POST_DATA = "http://localhost:5000/api/v1/products"
-        axios.post(URL_POST_DATA,inputData).then(res=>console.log(res)).catch(err=>console.log(err))
+       try {
+            errorDisplay.current.classList.remove("active")
+          const response =   await axios.post(URL_POST_DATA,inputData)
+            if(response.status == 200){
+                setToggleText(true)
+                errorDisplay.current.classList.add("active")
+            }
+       } catch (error) {
+            errorDisplay.current.classList.add("active")
+       }
         
     }
 
@@ -36,6 +46,7 @@ export const CreateUpdate = ()=>{
                 
                 <input type="text" name="display" id="display" autoComplete='off' placeholder='Display Specification'/>
                 <button type="submit" className='submit-btn'>Add Product</button>
+                <h4 className="error" ref={errorDisplay} style ={(!toggleText)?{backgroundColor:"#f7505091"}:{backgroundColor:"#4ce24cb0"}}>{(!toggleText)?"Please fill up all the fields" : "Product added"}</h4>
             </form>
         </div>
     </>

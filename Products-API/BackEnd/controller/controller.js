@@ -68,7 +68,7 @@ const getQueryProduct = async(req,res)=>
 const postProduct = async (req,res)=>
 {
     const product = req.body;
-
+  
     // empty body
     if(Object.entries(product).length == 0) return res.status(406).json({"status":"empty object","time":new Date().toLocaleString()})
 
@@ -76,7 +76,7 @@ const postProduct = async (req,res)=>
     if(Object.entries(product).length <9) return res.status(406).json({"status":"missing data","time":new Date().toLocaleString()})
 
     //some field has data and some don't
-    if(Object.entries(product).every(item=>item[1]!=='')) return res.status(406).json({"status":"missing data","time":new Date().toLocaleString()})
+    if(Object.entries(product).every(item=>item[1]=='')) return res.status(406).json({"status":"missing data","time":new Date().toLocaleString()})
 
     try {
         await productModel.create(product);
