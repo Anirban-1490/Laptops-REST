@@ -13,6 +13,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Main />} />
                 <Route path="/createandupdate" element={<CreateUpdate />} />
+                <Route path="/createandupdate/:productID" element={<CreateUpdate />} />
             </Routes>
        </Router>
     </>

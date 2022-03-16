@@ -2,6 +2,7 @@
 const productModel = require("../Database/db_products_model");
 
 
+
 // get all the products
 const getAllProducts = async (req,res)=>
 {
@@ -65,18 +66,9 @@ const getQueryProduct = async(req,res)=>
 
 //middleware for add a product
 
-const postProduct = async (req,res)=>
+const postProduct = async (req,res,next)=>
 {
-    const product = req.body;
-  
-    // empty body
-    if(Object.entries(product).length == 0) return res.status(406).json({"status":"empty object","time":new Date().toLocaleString()})
-
-    // not every field is presentin the passed body
-    if(Object.entries(product).length <9) return res.status(406).json({"status":"missing data","time":new Date().toLocaleString()})
-
-    //some field has data and some don't
-    if(Object.entries(product).every(item=>item[1]=='')) return res.status(406).json({"status":"missing data","time":new Date().toLocaleString()})
+   const product = req.body;
 
     try {
         await productModel.create(product);
@@ -94,12 +86,6 @@ const updateProduct = async(req,res)=>
     const update = req.body;
     const {productID} = req.params;
     
-
-    if(Object.entries(update).length == 0) return res.status(406).json({"status":"empty object","time":new Date().toLocaleString()})
-
-     // not every field is present in the passed body
-     if(Object.entries(update).length <10) return res.status(406).json({"status":"missing data","time":new Date().toLocaleString()})
-
      //*find the doc by id and update it 
 
     await productModel.findByIdAndUpdate(productID,update,{runValidators:true}) //*using runvalidator to enable schema validation as findbyID has limited validation

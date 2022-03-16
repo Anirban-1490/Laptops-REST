@@ -94,7 +94,9 @@ export const Main = ()=>
                                        </div>
                                        <div className='operations'>
                                            <button className='update'>
+                                               <Link to={`/createandupdate/${_id}`}>
                                                <ion-icon name="create-outline"></ion-icon>
+                                               </Link>
                                            </button>
                                            <button className='delete' onClick={e => deleteProduct(e, _id)}>
                                                <ion-icon name="trash-outline"></ion-icon>
