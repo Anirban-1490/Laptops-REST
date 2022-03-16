@@ -67,15 +67,75 @@ body{
     width: 100%;
     height: 100%;
 }
-.item-container
+.item-container-main
+{
+
+    height: 9em;
+    margin: 5% 0;
+    position: relative;
+}
+.item-container-main > h3{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgb(16, 201, 16);
+    white-space: nowrap;
+    padding: 0.5em;
+    font-size: 0.9em;
+    font-weight: lighter;
+    animation: textanime 2.4s ease-out 1 forwards;
+    display: none;
+    z-index: 1;
+}
+.item-container-main > h3.active{
+    display: block;
+}
+@keyframes textanime{
+    0%{
+        opacity: 0%;
+        transform: translate(-50%,-50%) scale(0.85);
+    }
+    50%{
+        opacity: 100%;
+        transform: translate(-50%,-50%) scale(1);
+    }
+    100%{
+        opacity: 0%;
+        transform: translate(-50%,-50%) scale(0.85);
+    }
+}
+
+.item-container-main .item-container
 {
     width: 100%;
     display: flex;
-    height: 9em;
+    height: 100%;
     box-shadow: 5px 5px 12px rgba(121, 119, 119, 0.582);
-    margin: 5% 0;
-   transform: translateY(0);
+   
+   transform: translate(0,0);
+   
    transition: all 300ms ease-out;
+   /* animation: fadeout 500ms linear 1 forwards; */
+}
+
+.item-container-main .item-container.animate
+{
+   
+   animation: fadeout 500ms linear 1 forwards;
+}
+
+@keyframes fadeout{
+    0%{
+        opacity: 100%;
+       
+    }
+    100%{
+        opacity: 0%;
+        
+        transform: translateX(-50%)
+    }
 }
 .item-container:hover{
     box-shadow: 5px 10px 12px rgba(121, 119, 119, 0.582);
@@ -151,13 +211,19 @@ body{
     font-size: 1.7em;
     right: 7%;
 }
-.item-container .info .wrapper .operations ion-icon:nth-child(2):hover{
+.item-container .info .wrapper .operations .delete,.item-container .info .wrapper .operations .update{
+    background: transparent;
+    outline: none;
+    border: none;
+    font-size: 0.77em;
+}
+.item-container .info .wrapper .operations .delete ion-icon:hover{
     color: red;
 }
-
-.item-container .info .wrapper .operations ion-icon:nth-child(1):hover{
+.item-container .info .wrapper .operations .update ion-icon:hover{
     color: green;
 }
+
 
 
 @media screen and (max-width:810px) {
