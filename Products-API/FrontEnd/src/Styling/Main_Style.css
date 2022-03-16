@@ -73,6 +73,7 @@ body{
     height: 9em;
     margin: 5% 0;
     position: relative;
+    cursor: pointer;
 }
 .item-container-main > h3{
     position: absolute;

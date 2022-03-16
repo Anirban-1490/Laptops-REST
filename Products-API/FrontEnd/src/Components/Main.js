@@ -70,8 +70,12 @@ export const Main = ()=>
     return <>
         <div className='container-main'>
             <h2>Laptop-ssss</h2>
-            <button className='createbtn'><Link to={"/createandupdate"} className="btnlink">
-            <ion-icon name="add"></ion-icon>Create</Link></button>
+            <button className='createbtn'>
+                <Link to={"/createandupdate"} className="btnlink">
+                    <ion-icon name="add"></ion-icon>
+                    Create
+                </Link>
+            </button>
             <main>
                {
                       
@@ -79,9 +83,9 @@ export const Main = ()=>
                     
                     const {img,name,price,rating,_id} = item;
 
-                    return <div className="item-container-main" key={_id}>
+                    return <div className="item-container-main" key={_id} onClick ={(e)=>window.location = `/product/${_id}`}>
                           
-                                <h3>{(isDeleted)?"Item deleted successfully!":"Can't delete item , try again later"}</h3>
+                            <h3>{(isDeleted)?"Item deleted successfully!":"Can't delete item , try again later"}</h3>
                            
                            <div  className="item-container"  >
                                <div className='img-container'><img src={img} alt="" /></div>
