@@ -91,7 +91,7 @@ export const Main = ()=>
                                <div className='img-container'><img src={img} alt="" /></div>
                                <div className='info'>
                                    <h3>{(windowSize <= 430) ? String(name).substring(0, 50) + "..." : (windowSize <= 810) ? String(name).substring(0, 90) + "..." : name}</h3>
-                                   <div className='wrapper'>
+                                   <div className='wrapper-extra'>
                                        <div className='more-details'>
                                            <h4> &#8377;{price}</h4>
                                            <h4><ion-icon name="star"></ion-icon>{rating}</h4>

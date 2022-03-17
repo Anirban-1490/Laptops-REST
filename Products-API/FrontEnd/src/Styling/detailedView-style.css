@@ -1,6 +1,6 @@
 
 
-.container{
+.wrapper{
     height: auto;
     flex: 0 0 78%;
     padding: 2em 0;
@@ -8,37 +8,38 @@
     justify-content: center;
     align-items: center;
 }
-.container .img-container{
+.wrapper .img-container{
     /* border: 2px solid yellow; */
     flex: 0 0 40%;
     height: 25em;
     cursor: crosshair;
     overflow: hidden;
 }
-.container .img-container img{
+.wrapper .img-container img{
     width: 100%;
     height: 100%;
     object-fit: contain;
     
 }
-.container .information{
+.wrapper .information{
     
     flex: 0 0 54%;
     display: flex;
     flex-direction: column;
     gap: 2em;
 }
-.container .information .name{
+.wrapper .information .name{
     font-size: 1.34em;
     padding: 0 2.5em;
+    font-family: sans-serif;
     
 }
-.container .information .price-stars{
+.wrapper .information .price-stars{
     margin-left: 3em;
     display: flex;
     gap: 1em;
 }
-.container .information .price-stars h4{
+.wrapper .information .price-stars h4{
     font-size: 1.1em;
     padding: 0.35em 1em;
     color: #A07855FF;
@@ -49,12 +50,12 @@
     font-family: sans-serif;
     text-align: center;
 }
-.container .information .price-stars h4 ion-icon{
+.wrapper .information .price-stars h4 ion-icon{
     color: rgb(255, 255, 13);
     margin-right: 0.3em;
 }
 
-.container .information > h4{
+.wrapper .information > h4{
     font-size: 1.06em;
     margin-left: 3em;
     font-family: Verdana, Geneva, Tahoma, sans-serif;

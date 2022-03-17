@@ -8,6 +8,7 @@ export const DetailedView = ()=>{
     const {productID} = useParams()
     const [data,setData] = useState()
     const imgref = useRef()
+
     useEffect(()=>{
 
         async function getData(){
@@ -17,7 +18,7 @@ export const DetailedView = ()=>{
             setData(data)
         }
         getData()
-    },[])
+    },[productID])
 
     const imgHover = (e)=>{
         const originX = e.currentTarget.clientWidth / 2
@@ -41,9 +42,9 @@ export const DetailedView = ()=>{
     }
 
     return <>
-        <div className="container">
+        <div className="wrapper">
             <div className="img-container" onMouseMove={e=>imgHover(e)} onMouseOut ={e=>imgHoverOut(e)}>
-                <img src={data?.img} alt="image" ref={imgref} />
+                <img src={data?.img} alt="" ref={imgref} />
             </div>
             <div className="information">
                 <h2 className="name">{data?.name}</h2>

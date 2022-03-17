@@ -169,7 +169,7 @@ body{
     font-size: 1.07em;
 
 }
-.item-container .info .wrapper{
+.item-container .info .wrapper-extra{
   width: 100%;
   display: flex;
   gap: 30%;
@@ -177,12 +177,12 @@ body{
   align-items: center;
   position: relative;
 }
-.item-container .info .wrapper .more-details{
+.item-container .info .wrapper-extra .more-details{
     display: flex;
     width: 100px;
     margin-left: 40px;
 }
-.item-container .info .wrapper .more-details h4{ 
+.item-container .info .wrapper-extra .more-details h4{ 
     font-size: 0.89em;
     margin: 0 4%;
     display: inline-block;
@@ -192,18 +192,18 @@ body{
      font-family: Verdana, Geneva, Tahoma, sans-serif;
    border-radius: 20px;
 }
-.item-container .info .wrapper .more-details h4:nth-child(2){
+.item-container .info .wrapper-extra .more-details h4:nth-child(2){
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 5px;
 }
-.item-container .info .wrapper .more-details h4:nth-child(2) ion-icon{
+.item-container .info .wrapper-extra .more-details h4:nth-child(2) ion-icon{
    color: yellow;
    font-size: 1.2em;
 }
 
-.item-container .info .wrapper .operations{
+.item-container .info .wrapper-extra .operations{
 
   
     display: flex;
@@ -212,16 +212,16 @@ body{
     font-size: 1.7em;
     right: 7%;
 }
-.item-container .info .wrapper .operations .delete,.item-container .info .wrapper .operations .update{
+.item-container .info .wrapper-extra .operations .delete,.item-container .info .wrapper-extra .operations .update{
     background: transparent;
     outline: none;
     border: none;
     font-size: 0.77em;
 }
-.item-container .info .wrapper .operations .delete ion-icon:hover{
+.item-container .info .wrapper-extra .operations .delete ion-icon:hover{
     color: red;
 }
-.item-container .info .wrapper .operations .update ion-icon:hover{
+.item-container .info .wrapper-extra .operations .update ion-icon:hover{
     color: green;
 }
 
@@ -232,22 +232,22 @@ body{
         font-size: 1em;
     
     }
-    .item-container .info .wrapper .more-details h4{ 
+    .item-container .info .wrapper-extra .more-details h4{ 
         font-size: 0.69em;
        
     }
-    .item-container .info .wrapper .operations{
+    .item-container .info .wrapper-extra .operations{
         font-size: 1.4em;
     }
     
 }
 @media screen and (max-width:490px) {
 
-    .item-container .info .wrapper .more-details h4{ 
+    .item-container .info .wrapper-extra .more-details h4{ 
         font-size: 0.49em;
        
     }
-    .item-container .info .wrapper .operations{
+    .item-container .info .wrapper-extra .operations{
 
         font-size: 1.4em;
     }
