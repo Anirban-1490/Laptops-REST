@@ -83,12 +83,15 @@ export const Main = ()=>
                     
                     const {img,name,price,rating,_id} = item;
 
-                    return <div className="item-container-main" key={_id} onClick ={(e)=>window.location = `/product/${_id}`}>
+                    return <div className="item-container-main" key={_id} >
                           
                             <h3>{(isDeleted)?"Item deleted successfully!":"Can't delete item , try again later"}</h3>
                            
                            <div  className="item-container"  >
-                               <div className='img-container'><img src={img} alt="" /></div>
+                               <div className='img-container'
+                                    onClick ={(e)=>window.location = `/product/${_id}`}>
+                                   <img src={img} alt="" />
+                                </div>
                                <div className='info'>
                                    <h3>{(windowSize <= 430) ? String(name).substring(0, 50) + "..." : (windowSize <= 810) ? String(name).substring(0, 90) + "..." : name}</h3>
                                    <div className='wrapper-extra'>
