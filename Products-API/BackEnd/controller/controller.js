@@ -30,10 +30,10 @@ const getSingleProduct =async  (req,res)=>
 }
 
 // middleware for query string URL
-const getQueryProduct = async(req,res)=>
+const getQueryProduct = async(req,res,next)=>
 {
    
-    const {rating , ram , price} = req.query;
+    const {rating , ram , price,sort} = req.query;
 
     let queryResult = {}
     if(rating)
@@ -59,11 +59,22 @@ const getQueryProduct = async(req,res)=>
 
     }
 
+    //* retrive the query so we can chain later
+    let query = productModel.find(queryResult);
 
-    const products = await productModel.find(queryResult);
+    if(sort) {
 
+        query = query.sort(sort.split(",")[0]); //* multiple parametrs are not allowed
+    }
+
+    const products = await query;
     return res.status(200).json({"status":"success","data":products,"time":new Date().toLocaleString()})
+
+   
 }
+
+
+
 
 
 //middleware for add a product
