@@ -32,35 +32,37 @@ const getSingleProduct =async  (req,res)=>
 // middleware for query string URL
 const getQueryProduct = async(req,res)=>
 {
-   const products = await productModel.find();
-    const queryParams = req.query;
+   
+    const {rating , ram , price} = req.query;
 
-    //*check if any of query string param has an empty value
-    const allValuesThere = Object.entries(queryParams).every(param =>param[1]!='')
-    if(!allValuesThere) return res.status(400).json({"status":"invalid query string","data":[],"time":new Date().toLocaleString()})
-
-    let queryResult = []
-    if(queryParams.rating)
+    let queryResult = {}
+    if(rating)
     {
-        queryResult =   products.filter(item=>item.rating >=Number(queryParams.rating))
+        //* if rating exist then add it to the empty object
+        queryResult.rating = {$gte:Number(rating)};
     }
-    if(queryParams.price)
+    if(price)
     {
-        const [min,max] = queryParams.price.split("_");
+        const [min,max] = price.split("_");
 
-        //*if there is already a query result then use that else filter from fresh data of database
-        const filteredData = (queryResult.length>0)?queryResult.filter(item=>item.price>=Number(min) && item.price<=Number(max)):products.filter(item=>item.price>=Number(min) && item.price<=Number(max))
-        queryResult = filteredData
+       //*gte = greater than or equals
+       //* lte = less than or equals
+
+       //* adding both means implecitly $and
+        queryResult.price = {$gte:Number(min),$lte:Number(max)};
+
     }
-    if(queryParams.ram)
+    if(ram)
     {
         const ramEnum = {"0":"2GB","1":"4GB","2":"8GB","3":"16GB","4":"32GB","5":"64GB"}
-        const filteredData = (queryResult.length>0)?queryResult.filter(item=>item.ram === ramEnum[queryParams.ram]):products.filter(item=>item.ram === ramEnum[queryParams.ram])
-        queryResult = filteredData
+        queryResult.ram = ramEnum[ram];
 
     }
 
-    return res.status(200).json({"status":"success","data":queryResult,"time":new Date().toLocaleString()})
+
+    const products = await productModel.find(queryResult);
+
+    return res.status(200).json({"status":"success","data":products,"time":new Date().toLocaleString()})
 }
 
 
